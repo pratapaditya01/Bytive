@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home Page</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+    crossorigin="anonymous">
+</head>
+<body>
+
+  <style>
+    /* Style to highlight elements and put them into a box line */
+    .highlight-box {
+      border: 2px solid #ffc107; /* Yellow border */
+      padding: 10px; /* Padding inside the box */
+      border-radius: 5px; /* Rounded corners */
+      margin-bottom: 20px; /* Margin at the bottom */
+    }
+  </style>
+  
+  <!-- Navbar with highlighted elements -->
+  <nav class="navbar navbar-expand-lg navbar-lite bg-lite highlight-box">
+    <div class="container">
+  
+      <!-- Navbar brand -->
+      <a class="navbar-brand" href="#">Navbar</a>
+  
+      <!-- Toggler button for mobile -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+              aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <!-- Navbar items -->
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <!-- Browse Students link -->
+          <li class="nav-item">
+            <a class="nav-link" href="#">Browse Students</a>
+          </li>
+  
+          <!-- Edit Profile link -->
+          <li class="nav-item">
+            <a class="nav-link" id="editProfile" href="./pages/edit_profile.html">Edit Profile</a>
+          </li>
+  
+          <!-- Logout button -->
+          <li class="nav-item">
+            <a class="nav-link" id="logoutBtn" href="#">Logout</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="container mt-4">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="input-group mb-3">
+          <span class="input-group-text">Search by Name:</span>
+          <input type="text" class="form-control" id="searchName" placeholder="Enter name">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="input-group mb-3">
+          <span class="input-group-text">Search by Tech Stack:</span>
+          <input type="text" class="form-control" id="searchTechStack" placeholder="Enter tech stack">
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="input-group mb-3">
+          <span class="input-group-text">Search by Bio:</span>
+          <input type="text" class="form-control" id="searchBio" placeholder="Enter bio">
+        </div>
+      </div>
+      <div class="col-md-12 text-center">
+        <button class="btn btn-primary" onclick="searchProfiles()">Search</button>
+      </div>
+    </div>
+  </section>
+  
+
+
+<!-- Section for rendering user profiles -->
+<section class="container mt-lg-auto" id="userProfilesSection">
+
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script src="./src/Loacal_Storage.js"></script>
+<script src="./src/index.js"></script>
+</body>
+</html>

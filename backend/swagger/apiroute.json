@@ -1,0 +1,333 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "title": "User Profile API",
+      "version": "1.0.0",
+      "description": "API for managing user profiles"
+    },
+    "paths": {
+      "/api/getusers": {
+        "get": {
+          "summary": "Get a list of profiles",
+          "responses": {
+            "200": {
+              "description": "List of profiles"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/api/searchusers/": {
+        "get": {
+          "summary": "Search profiles",
+          "parameters": [
+            {
+              "name": "name",
+              "in": "query",
+              "description": "Name to search",
+              "required": false,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "techStack",
+              "in": "query",
+              "description": "Tech Stack to search",
+              "required": false,
+              "schema": {
+                "type": "string"
+              }
+            },
+            {
+              "name": "bio",
+              "in": "query",
+              "description": "Bio to search",
+              "required": false,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "List of profiles"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/api/updateusers": {
+        "put": {
+          "summary": "Update user profile",
+          "responses": {
+            "200": {
+              "description": "Profile updated successfully"
+            },
+            "403": {
+              "description": "Forbidden - You are not authorized to edit this profile"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/api/user/register": {
+        "post": {
+          "summary": "Register a new user",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": { "type": "string" },
+                    "email": { "type": "string", "format": "email" },
+                    "password": { "type": "string" },
+                    "gravatar": { "type": "string" },
+                    "location": { "type": "string" },
+                    "fieldOfInterest": { "type": "array", "items": { "type": "string" } },
+                    "techStack": { "type": "array", "items": { "type": "string" } },
+                    "seeking": { "type": "array", "items": { "type": "string" } },
+                    "bio": { "type": "string" },
+                    "githubURL": { "type": "string" },
+                    "twitterURL": { "type": "string" },
+                    "websiteURL": { "type": "string" },
+                    "linkedinURL": { "type": "string" }
+                  },
+                  "required": ["name", "email", "password"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "201": {
+              "description": "User registered successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": { "type": "string" },
+                      "token": { "type": "string" },
+                      "profile": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            },
+            "400": {
+              "description": "Bad Request - provide all the required input"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/api/user/login": {
+        "post": {
+          "summary": "Login user",
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "email": { "type": "string", "format": "email" },
+                    "password": { "type": "string" }
+                  },
+                  "required": ["email", "password"]
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Login successful",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": { "type": "string" },
+                      "token": { "type": "string" },
+                      "profile": { "type": "string" }
+                    }
+                  }
+                }
+              }
+            },
+            "401": {
+              "description": "Unauthorized - Invalid email or password"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/api/user/editprofile/{userId}": {
+        "put": {
+          "summary": "Edit user profile",
+          "parameters": [
+            {
+              "name": "userId",
+              "in": "path",
+              "description": "ID of the user to edit",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "requestBody": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": { "type": "string" },
+                    "gravatar": { "type": "string" },
+                    "location": { "type": "string" },
+                    "fieldOfInterest": { "type": "array", "items": { "type": "string" } },
+                    "techStack": { "type": "array", "items": { "type": "string" } },
+                    "seeking": { "type": "array", "items": { "type": "string" } },
+                    "bio": { "type": "string" },
+                    "githubURL": { "type": "string" },
+                    "twitterURL": { "type": "string" },
+                    "websiteURL": { "type": "string" },
+                    "linkedinURL": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "responses": {
+            "200": {
+              "description": "Profile updated successfully"
+            },
+            "403": {
+              "description": "Forbidden - You are not authorized to edit this profile"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/api/user/userprofile/{userId}": {
+        "get": {
+          "summary": "Get user profile",
+          "parameters": [
+            {
+              "name": "userId",
+              "in": "path",
+              "description": "ID of the user to get profile",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "User fetched successfully",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "message": { "type": "string" },
+                      "user": { "type": "array" }
+                    }
+                  }
+                }
+              }
+            },
+            "403": {
+              "description": "Forbidden - You are not authorized to get this profile"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/api/user/deleteprofile/{userId}": {
+        "delete": {
+          "summary": "Delete user account",
+          "parameters": [
+            {
+              "name": "userId",
+              "in": "path",
+              "description": "ID of the user to delete account",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Account deleted successfully"
+            },
+            "403": {
+              "description": "Forbidden - You are not authorized to delete this account"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      },
+      "/api/user/logout": {
+        "get": {
+          "summary": "Logout user",
+          "security": [
+            {
+              "BearerAuth": []
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Logout successful"
+            },
+            "500": {
+              "description": "Internal Server Error"
+            }
+          }
+        }
+      }
+    },
+    "components": {
+      "securitySchemes": {
+        "BearerAuth": {
+          "type": "http",
+          "scheme": "bearer",
+          "bearerFormat": "JWT"
+        }
+      }
+    }
+  }
+  
