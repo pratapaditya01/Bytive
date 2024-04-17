@@ -15,7 +15,7 @@ const verifyUserMiddleware = (req, res, next) => {
       return res.status(401).json({ message: 'Unauthorized - Invalid token provided' });
     }
 
-    // Attach the decoded user ID to the request object
+
     req.user = { _id: decoded.userId };
 
     // Move to the next middleware or route handler
