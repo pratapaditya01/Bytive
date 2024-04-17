@@ -1,4 +1,3 @@
-const dotenv=require('dotenv').config();
 fetchProfiles("/getusers");
 
 if (loggedInId) {
@@ -34,7 +33,7 @@ function searchProfiles() {
 
 // Function to fetch user profiles
 function fetchProfiles(uri) {
-  
+  const baseurl = "http://localhost:8000/api";
 
   const apiUrl = `${baseurl}${uri}`;
 
