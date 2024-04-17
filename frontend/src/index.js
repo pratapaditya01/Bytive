@@ -3,7 +3,7 @@ fetchProfiles("/getusers");
 if (loggedInId) {
   editprofile.setAttribute(
     "href",
-    `./pages/edit_profile.html?LoggedInId=${loggedInId}`
+    `./pages/Profile_Edit.html?LoggedInId=${loggedInId}`
   );
 } 
 logoutbtn.addEventListener("click", () => {
@@ -13,7 +13,7 @@ logoutbtn.addEventListener("click", () => {
       swal("Message!", "Logout successfully", "success");
       logoutbtn.textContent = "Login";
     } else {
-      logoutbtn.setAttribute("href", "./pages/signup-signin.html");
+      logoutbtn.setAttribute("href", "./pages/Register_Sign.html");
     }
   });
 
@@ -85,7 +85,7 @@ function renderUserProfiles(userProfiles) {
 
 //   function to view profile on new page
 function viewProfile(userId) {
-  window.location.href = `./pages/edit_profile.html?userId=${userId}`;
+  window.location.href = `./pages/Profile_Edit.html?userId=${userId}`;
 }
 
 //  function to delete you account

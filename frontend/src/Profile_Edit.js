@@ -17,7 +17,7 @@
           swal("Message!", "Logout successfully", "success");
           logoutbtn.textContent = "Login";
         } else {
-          logoutbtn.setAttribute("href", "./signup-signin.html");
+          logoutbtn.setAttribute("href", "./Register_Sign.html");
         }
       });
 
