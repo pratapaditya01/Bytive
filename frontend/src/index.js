@@ -1,10 +1,9 @@
-const dotenv=require('dotenv').config();
 fetchProfiles("/getusers");
 
 if (loggedInId) {
   editprofile.setAttribute(
     "href",
-    `./pages/Profile_Edit.html?LoggedInId=${loggedInId}`
+    `./pages/edit_profile.html?LoggedInId=${loggedInId}`
   );
 } 
 logoutbtn.addEventListener("click", () => {
@@ -14,7 +13,7 @@ logoutbtn.addEventListener("click", () => {
       swal("Message!", "Logout successfully", "success");
       logoutbtn.textContent = "Login";
     } else {
-      logoutbtn.setAttribute("href", "./pages/Register_Sign.html");
+      logoutbtn.setAttribute("href", "./pages/signup-signin.html");
     }
   });
 
@@ -34,9 +33,9 @@ function searchProfiles() {
 
 // Function to fetch user profiles
 function fetchProfiles(uri) {
-  // const baseurl = "https://stretch.onrender.com/api";
+  const baseurl = "http://localhost:8000/api";
 
-  const apiUrl = `${process.env.baseurl}${uri}`;
+  const apiUrl = `${baseurl}${uri}`;
 
   // Fetch data from the API
   fetch(apiUrl)
@@ -86,7 +85,7 @@ function renderUserProfiles(userProfiles) {
 
 //   function to view profile on new page
 function viewProfile(userId) {
-  window.location.href = `./pages/Profile_Edit.html?userId=${userId}`;
+  window.location.href = `./pages/edit_profile.html?userId=${userId}`;
 }
 
 //  function to delete you account
