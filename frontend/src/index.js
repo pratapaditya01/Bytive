@@ -34,7 +34,7 @@ function searchProfiles() {
 
 // Function to fetch user profiles
 function fetchProfiles(uri) {
-  const baseurl = "https://stretch.onrender.com/api";
+  const baseurl = "https://stretch.onrender.com";
 
   const apiUrl = `${baseurl}${uri}`;
 
