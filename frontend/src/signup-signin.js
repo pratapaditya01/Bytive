@@ -64,7 +64,7 @@ $(document).ready(function () {
 function registerUser(formData) {
 console.log(formData);
 $.ajax({
-  url: "http://localhost:8000/api/user/register",
+  url: "https://stretch.onrender.com/api/user/register",
   type: "POST",
   data: JSON.stringify(formData), 
   contentType: 'application/json',
@@ -88,7 +88,7 @@ $.ajax({
 function loginUser(formData) {
   console.log(formData);
   $.ajax({
-    url: "http://localhost:8000/api/user/login",
+    url: "https://stretch.onrender.com/api/user/login",
     type: "POST",
     data: JSON.stringify(formData), 
   contentType: 'application/json',

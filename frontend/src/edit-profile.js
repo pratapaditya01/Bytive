@@ -26,7 +26,7 @@ function fetchUserInfo(userId,one) {
   const headers = new Headers();
   headers.append("Authorization", `${token}`);
   fetch(
-    `http://localhost:8000/api/user/userprofile/${userId}`,
+    `https://stretch.onrender.com/api/user/userprofile/${userId}`,
     {
       headers: headers,
     }
@@ -264,7 +264,7 @@ const formData = {
 
 // Make a PUT request to update user data
 $.ajax({
-  url: `http://localhost:8000/api/user/editprofile/${loggedInId}`,
+  url: `https://stretch.onrender.com/api/user/editprofile/${loggedInId}`,
   method: 'PUT',
   headers: {
     Authorization: localStorage.getItem('token'), // Include your authorization header
@@ -305,7 +305,7 @@ if (confirm("Press OK to delete your Account!")) {
 
   // Make the DELETE request
   fetch(
-    `http://localhost:8000/api/user/deleteprofile/${userId}`,
+    `https://stretch.onrender.com/api/user/deleteprofile/${userId}`,
     {
       method: "DELETE",
       headers: headers,

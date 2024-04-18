@@ -33,7 +33,7 @@ function searchProfiles() {
 
 // Function to fetch user profiles
 function fetchProfiles(uri) {
-  const baseurl = "http://localhost:8000/api";
+  const baseurl = "https://stretch.onrender.com/api";
 
   const apiUrl = `${baseurl}${uri}`;
 
@@ -101,7 +101,7 @@ function deleteProfile(userId) {
 
     // Make the DELETE request
     fetch(
-      `http://localhost:8000/api/user/deleteprofile/${userId}`,
+      `https://stretch.onrender.com/api/user/deleteprofile/${userId}`,
       {
         method: "DELETE",
         headers: headers,
