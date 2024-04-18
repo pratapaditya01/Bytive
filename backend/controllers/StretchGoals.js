@@ -1,6 +1,4 @@
 const User = require("../model/user.model");
-const jwt = require("jsonwebtoken");
-const dotenv = require('dotenv').config();
 
 const registerUser = async (req, res) => {
   try {
@@ -19,10 +17,12 @@ const registerUser = async (req, res) => {
       websiteURL,
       linkedinURL, } = req.body;
 
-    // Check if user with the given email already exists
+    // Check if all required inputs are provided
     if (!email || !name || !password) {
-      res.status(400).json({ message: "provide all the required input" });
+      res.status(400).json({ message: "Provide all the required input" });
     }
+
+    // Check if user with the given email already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res
@@ -45,19 +45,13 @@ const registerUser = async (req, res) => {
       twitterURL,
       websiteURL,
       linkedinURL,
-      
     });
 
-    
     await newUser.save();
-
-    const token = jwt.sign({ userId: newUser._id }, process.env.jwtkey, {
-      expiresIn: "1h",
-    });
 
     res
       .status(201)
-      .json({ message: "User registered successfully", token, profile:newUser._id });
+      .json({ message: "User registered successfully", profile: newUser._id });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
@@ -65,7 +59,6 @@ const registerUser = async (req, res) => {
 };
 
 // Controller for user login
-
 const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -81,12 +74,7 @@ const loginUser = async (req, res) => {
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
-    // Generate a JWT token
-    const token = jwt.sign({ userId: user._id }, process.env.jwtkey, {
-      expiresIn: "1h",
-    });
-
-    res.status(200).json({ message: "Login successful", token , profile:user._id });
+    res.status(200).json({ message: "Login successful", profile: user._id });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
@@ -94,8 +82,6 @@ const loginUser = async (req, res) => {
 };
 
 // Controller for user profile editing
-
-
 const editUserProfile = async (req, res) => {
   try {
     const {
@@ -142,8 +128,6 @@ const editUserProfile = async (req, res) => {
 };
 
 // Controller for user account deletion
-
-
 const deleteUserAccount = async (req, res) => {
   try {
     // Check if the logged-in user is the owner of the account
@@ -163,15 +147,14 @@ const deleteUserAccount = async (req, res) => {
   }
 };
 
-
+// Controller to fetch user account
 const UserAccount = async (req, res) => {
   try {
-    const {userId}=req.params
-    console.log(userId)
-    // single user account
-   const user= await User.find({_id:userId});
+    const { userId } = req.params;
+    // Fetch user account
+    const user = await User.find({ _id: userId });
 
-    res.status(200).json({message:"user fetched" , user });
+    res.status(200).json({ message: "User fetched", user });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Internal server error" });
@@ -180,7 +163,7 @@ const UserAccount = async (req, res) => {
 
 // Controller for user logout
 const logoutUser = (req, res) => {
-  // No need for specific logout with JWT, as the client handles the token
+  // No specific logout action needed without JWT
   res.status(200).json({ message: "Logout successful" });
 };
 
