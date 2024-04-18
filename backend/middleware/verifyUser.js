@@ -1,3 +1,5 @@
+const jwt = require('jsonwebtoken');
+
 const verifyUserMiddleware = (req, res, next) => {
   // Get the token from the request header
   const token = req.headers.authorization;
@@ -7,8 +9,18 @@ const verifyUserMiddleware = (req, res, next) => {
     return res.status(401).json({ message: 'Unauthorized - No token provided' });
   }
 
-  // Move to the next middleware or route handler
-  next();
+  // Verify the token
+  jwt.verify(token, process.env.jwtkey, (err, decoded) => {
+    if (err) {
+      return res.status(401).json({ message: 'Unauthorized - Invalid token provided' });
+    }
+
+
+    req.user = { _id: decoded.userId };
+
+    // Move to the next middleware or route handler
+    next();
+  });
 };
 
 module.exports = verifyUserMiddleware;
