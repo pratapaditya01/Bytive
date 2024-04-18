@@ -26,7 +26,7 @@
       const headers = new Headers();
       headers.append("Authorization", `${token}`);
       fetch(
-        `https://stretch-git-main-pratapaditya01s-projects.vercel.app/api/user/userprofile/${userId}`,
+        `https://stretch.onrender.com/api/user/userprofile/${userId}`,
         {
           headers: headers,
         }
