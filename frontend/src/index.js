@@ -102,7 +102,7 @@ function deleteProfile(userId) {
 
     // Make the DELETE request
     fetch(
-      `https://stretch-git-main-pratapaditya01s-projects.vercel.app/${userId}`,
+      `https://stretch.onrender.com/api/${userId}`,
       {
         method: "DELETE",
         headers: headers,

@@ -264,7 +264,7 @@ function populateSelect(selectId, options, selectedValues) {
 
     // Make a PUT request to update user data
     $.ajax({
-      url: `https://stretch-git-main-pratapaditya01s-projects.vercel.app/api/user/editprofile/${loggedInId}`,
+      url: `https://stretch.onrender.com/api/user/editprofile/${loggedInId}`,
       method: 'PUT',
       headers: {
         Authorization: localStorage.getItem('token'), // Include your authorization header
@@ -305,7 +305,7 @@ function deleteProfile(userId) {
   
       // Make the DELETE request
       fetch(
-        `https://stretch-git-main-pratapaditya01s-projects.vercel.app/api/user/deleteprofile/${userId}`,
+        `https://stretch.onrender.com/api/${userId}`,
         {
           method: "DELETE",
           headers: headers,
