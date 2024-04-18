@@ -34,7 +34,7 @@ function searchProfiles() {
 
 // Function to fetch user profiles
 function fetchProfiles(uri) {
-  const baseurl = "https://stretch-git-main-pratapaditya01s-projects.vercel.app/api";
+  const baseurl = "https://stretch.onrender.com/api";
 
   const apiUrl = `${baseurl}${uri}`;
 
