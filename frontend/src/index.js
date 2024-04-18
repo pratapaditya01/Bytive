@@ -1,4 +1,3 @@
-const dotenv=require('dotenv').config();
 fetchProfiles("/getusers");
 
 if (loggedInId) {
@@ -34,7 +33,7 @@ function searchProfiles() {
 
 // Function to fetch user profiles
 function fetchProfiles(uri) {
-  const baseurl = "https://stretch.onrender.com/api";
+  const baseurl = "http://localhost:8000/api";
 
   const apiUrl = `${baseurl}${uri}`;
 
@@ -102,7 +101,7 @@ function deleteProfile(userId) {
 
     // Make the DELETE request
     fetch(
-      `https://stretch.onrender.com/api/${userId}`,
+      `http://localhost:8000/api/user/deleteprofile/${userId}`,
       {
         method: "DELETE",
         headers: headers,
