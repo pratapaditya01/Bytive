@@ -34,9 +34,9 @@ function searchProfiles() {
 
 // Function to fetch user profiles
 function fetchProfiles(uri) {
-  // const baseurl = "http://localhost:8000/api";
+  const baseurl = "http://localhost:8000/api";
 
-  const apiUrl = `${process.env.baseurl}${uri}`;
+  const apiUrl = `${baseurl}${uri}`;
 
   // Fetch data from the API
   fetch(apiUrl)
