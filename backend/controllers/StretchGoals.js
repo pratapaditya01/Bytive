@@ -1,7 +1,7 @@
 const User = require("../model/user.model");
-const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const dotenv=require('dotenv').config();
+const dotenv = require('dotenv').config();
+
 const registerUser = async (req, res) => {
   try {
     const { 
@@ -30,14 +30,11 @@ const registerUser = async (req, res) => {
         .json({ message: "User with this email already exists" });
     }
 
-    // Hash the password
-    const hashedPassword = await bcrypt.hash(password, 10);
-
     // Create a new user
     const newUser = new User({
       name,
       email,
-      password: hashedPassword,
+      password,
       gravatar,
       location,
       fieldOfInterest,
@@ -80,8 +77,7 @@ const loginUser = async (req, res) => {
     }
 
     // Compare the provided password with the hashed password in the database
-    const passwordMatch = await bcrypt.compare(password, user.password);
-    if (!passwordMatch) {
+    if (password !== user.password) {
       return res.status(401).json({ message: "Invalid email or password" });
     }
 
