@@ -34,7 +34,7 @@ function searchProfiles() {
 
 // Function to fetch user profiles
 function fetchProfiles(uri) {
-  const baseurl = "http://localhost:8000/api";
+  const baseurl = "https://stretch-git-main-pratapaditya01s-projects.vercel.app/api";
 
   const apiUrl = `${baseurl}${uri}`;
 
@@ -102,7 +102,7 @@ function deleteProfile(userId) {
 
     // Make the DELETE request
     fetch(
-      `http://localhost:8000/api/user/deleteprofile/${userId}`,
+      `https://stretch-git-main-pratapaditya01s-projects.vercel.app/${userId}`,
       {
         method: "DELETE",
         headers: headers,

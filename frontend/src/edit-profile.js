@@ -26,7 +26,7 @@
       const headers = new Headers();
       headers.append("Authorization", `${token}`);
       fetch(
-        `http://localhost:8000/api/user/userprofile/${userId}`,
+        `https://stretch-git-main-pratapaditya01s-projects.vercel.app/api/user/userprofile/${userId}`,
         {
           headers: headers,
         }
@@ -264,7 +264,7 @@ function populateSelect(selectId, options, selectedValues) {
 
     // Make a PUT request to update user data
     $.ajax({
-      url: `http://localhost:8000/api/user/editprofile/${loggedInId}`,
+      url: `https://stretch-git-main-pratapaditya01s-projects.vercel.app/api/user/editprofile/${loggedInId}`,
       method: 'PUT',
       headers: {
         Authorization: localStorage.getItem('token'), // Include your authorization header
@@ -305,7 +305,7 @@ function deleteProfile(userId) {
   
       // Make the DELETE request
       fetch(
-        `http://localhost:8000/api/user/deleteprofile/${userId}`,
+        `https://stretch-git-main-pratapaditya01s-projects.vercel.app/api/user/deleteprofile/${userId}`,
         {
           method: "DELETE",
           headers: headers,
